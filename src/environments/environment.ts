@@ -3,7 +3,20 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  UrlNodo: "HTTP://127.0.0.1:7545",
+  PassAES: "1",
+  Storage: {
+    passCrypt: "p",
+    KeyAccountCrypt: "d",
+    PrivateKey: "k",
+    AddresCrypt: "a"
+  },
+  domaing: "http://localhost:4200/",
+  EtherScan: {
+    Api_Key: "PSGFK1SJH3KRNPR7XR38RZRKUXZFBD3WKV"
+  },
+  chain: 'ropsten'
 };
 
 /*

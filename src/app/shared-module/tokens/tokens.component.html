@@ -1,0 +1,106 @@
+<div class="row">
+    <div class="col-sm-12 col-md-8">
+        <h1 class="h3">Tokens</h1>
+    </div>
+    <div class="col-sm-12 col-md-4">
+        <div class="input-group">
+            <input type="text" class="form-control" name="search_token" [(ngModel)]="search_token"
+                placeholder="Seach Token" (keyup)="SearchKey($event)">
+            <span class="input-group-text" (click)="Buscar()">
+                <img src="assets/search.svg" class="img-search" alt="">
+            </span>
+        </div>
+    </div>
+    <div class="col-12">
+        <h5>Page {{page_select}} of {{paginas}}</h5>
+    </div>
+    <div class="col-12 table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Token</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">%Change_(24H)</th>
+                    <th scope="col">Volume</th>
+                    <th scope="col">Market Cap</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let token of tokens_watch">
+                    <th class="cursor" (click)="SelectToken(token)">
+                        <img [src]="token.image" class="img-token" alt="">
+                        {{token.symbol.toUpperCase()}} - {{token.name}}
+                    </th>
+                    <td>{{token.current_price | currency}}</td>
+                    <td>
+                        <ng-container *ngIf="token.price_change_percentage_24h!==null">
+                            <ng-container *ngIf="token.price_change_percentage_24h>0; else elseTemplate">
+                                <img src="assets/up-arrow.svg" class="arrow" alt="">
+                                <span class="green">{{token.price_change_percentage_24h.toFixed(2)}}</span>
+                            </ng-container>
+                            <ng-template #elseTemplate>
+                                <img src="assets/down-arrow.svg" class="arrow" alt="">
+                                <span class="red">{{token.price_change_percentage_24h.toFixed(2)}}</span>
+                            </ng-template>
+                        </ng-container>
+                    </td>
+                    <td>{{token.total_volume | currencyComma}}</td>
+                    <td>{{token.market_cap | currencyComma}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <nav aria-label="Page navigation of tokens">
+            <ul class="pagination justify-content-end">
+                <li class="page-item" (click)="previusPage()"><a class="page-link">Previous</a></li>
+                <li class="page-item" (click)="nextPage()"><a class="page-link">Next</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<div class="modal fade" id="ModelToken" tabindex="-1" aria-labelledby="ModelTokenLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModelTokenLabel">
+                    <img [src]="token_select.image" class="img-token" alt="">
+                    {{token_select.symbol.toUpperCase()}} - {{token_select.name}}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    (click)="cleanToken()"></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <strong>Contract:</strong> {{token_select.contract}}
+                </p>
+                <p>
+                    <strong>Price:</strong> {{token_select.current_price | currency}}
+                    <span style="margin-left: 10px;"></span>
+                    <ng-container *ngIf="token_select.price_change_percentage_24h!==null">
+                        <ng-container *ngIf="token_select.price_change_percentage_24h>0; else elseToken">
+                            <img src="assets/up-arrow.svg" class="arrow" alt="">
+                            <span class="green">{{token_select.price_change_percentage_24h.toFixed(2)}}</span>
+                        </ng-container>
+                        <ng-template #elseToken>
+                            <img src="assets/down-arrow.svg" class="arrow" alt="">
+                            <span class="red">{{token_select.price_change_percentage_24h.toFixed(2)}}</span>
+                        </ng-template>
+                    </ng-container>
+                </p>
+                <p>
+                    <strong>Total Supply:</strong> {{token_select.total_supply | currencyComma}}
+                </p>
+                <p>
+                    <strong>Market Cap:</strong> {{token_select.market_cap | currencyComma}}
+                </p>
+                <p>
+                    <strong>Volume:</strong> {{token_select.total_volume | currencyComma}}
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                    (click)="cleanToken()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

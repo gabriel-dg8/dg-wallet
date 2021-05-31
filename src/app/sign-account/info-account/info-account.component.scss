@@ -1,0 +1,60 @@
+.card-info {
+    padding: 1em;
+    margin: 0.5em;
+    min-height: 6em;
+    border-radius: 5px;
+}
+
+.icon-card {
+    height: 1.3em;
+}
+.col-4 {
+    height: 100%;
+}
+
+.cards {
+    background-color: white;
+    border-radius: 10px;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    box-shadow: 2px 4px 8px -6px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 2px 4px 8px -6px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px 4px 8px -6px rgba(0, 0, 0, 0.75);
+}
+.copy {
+    height: 1.3em;
+    cursor: pointer;
+    margin-left: 0.2em;
+}
+.icon-address {
+    width: 3em;
+    height: 3em;
+}
+
+.address {
+    margin-left: 1em;
+}
+
+#canvas {
+    width: 10em !important;
+    height: 10em !important;
+}
+
+.card-info h4 {
+    color: white;
+}
+.card-info p {
+    color: white;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+.balance {
+    background-color: #3657e3;
+}
+.value {
+    background-color: #48bcfa;
+}
+.network {
+    background-color: #36e3ce;
+}

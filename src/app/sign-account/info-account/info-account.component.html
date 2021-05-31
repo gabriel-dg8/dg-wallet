@@ -1,0 +1,68 @@
+<div class="row cards">
+    <div class="col-12">
+        <div style="display: flex;">
+            <img src="assets/payment.svg" class="icon-address">
+            <div class="address">
+                <h4>Address</h4>
+                <p class="text-break">
+                    {{address}}
+                    <img src="assets/copy.svg" class="copy" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Copy" (click)="Copy()">
+                    <img src="assets/qr-code.svg" class="copy" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Watch QRCode" (click)="QrCode()">
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-4">
+        <div class="card-info balance">
+            <div>
+                <h4><img src="assets/wallet.svg" class="icon-card" alt=""> ETH Balance</h4>
+            </div>
+            <p>
+                {{balance}} ETH
+            </p>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-4">
+        <div class="card-info value">
+            <div class="row">
+                <div>
+                    <h4><img src="assets/dollar.svg" class="icon-card" alt=""> USD Value</h4>
+                </div>
+                <p>
+                    1 ETH = {{ cambio | currency}}
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-4">
+        <div class="card-info network">
+            <div class="row">
+                <div>
+                    <h4>
+                        <img src="assets/ethereum.svg" class="icon-card" alt=""> Network
+                    </h4>
+                </div>
+                <p style="overflow: hidden;">{{network}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="QrModal" tabindex="-1" aria-labelledby="QrModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="QrModalLabel">Address</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <canvas id="canvas"></canvas>
+                <p>{{address}}</p>
+            </div>
+
+        </div>
+    </div>
+</div>

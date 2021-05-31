@@ -1,1 +1,80 @@
 /* You can add global styles to this file, and also import other style files */
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.link {
+    cursor: pointer;
+    color: #f35111 !important;
+    text-decoration: underline #f35111;
+}
+.mr-top {
+    margin-top: 6em;
+}
+html {
+    background-color: #6d65610a;
+}
+body,
+.container {
+    background-color: transparent !important;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+    color: #270089;
+}
+.btn-outline-primary:hover {
+    color: white !important;
+}
+.contenido {
+    background-color: white;
+    border-radius: 10px;
+    padding-top: 1em;
+    padding-bottom: 1.5em;
+    margin-bottom: 2em;
+    box-shadow: 2px 4px 8px -6px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 2px 4px 8px -6px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px 4px 8px -6px rgba(0, 0, 0, 0.75);
+}
+input[type="text"],
+select,
+input[type="password"] {
+    border-style: solid !important;
+    border-color: #f35111 !important;
+    border-top-color: white !important;
+    border-left-color: white !important;
+    border-right-color: white !important;
+    border-radius: 0px !important;
+    animation-duration: 0.5s;
+}
+
+input[type="text"]:focus,
+select:focus,
+input[type="password"]:focus {
+    border-bottom-color: #f35111 !important;
+    border-top-color: white !important;
+    border-left-color: white !important;
+    border-right-color: white !important;
+    border-bottom-width: 2px !important;
+    box-shadow: none !important;
+}
+option:hover {
+    background-color: #f35111bd;
+}
+.img-search {
+    height: 1em;
+}
+.input-group-text {
+    background-color: white !important;
+    cursor: pointer;
+    border-bottom-color: #f35111 !important;
+    border-top-color: white !important;
+    border-left-color: white !important;
+    border-right-color: white !important;
+    border-radius: 0px;
+}
+input:focus + .input-group-text {
+    border-bottom-width: 2px !important;
+}

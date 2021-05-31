@@ -1,0 +1,49 @@
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="typelogin">Login form</label>
+                    <select class="form-select" name="typelogin" [(ngModel)]="typelogin">
+                        <option value="0" selected>Key Store File</option>
+                        <option value="1">Private Key</option>
+                    </select>
+                </div>
+                <hr>
+                <ng-container *ngIf="typelogin==='0'; else ElsePrivate">
+                    <div class="form-group">
+                        <label for="formFile" class="form-label">Select your private key</label>
+                        <input class="form-control" type="file" id="formFile" (change)="SelectKey($event)" lang="en">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" placeholder="Enter your password" name="password"
+                            [(ngModel)]="password" (keyup)="keyUp($event)">
+                    </div>
+                </ng-container>
+                <ng-template #ElsePrivate>
+                    <div class="form-group">
+                        <label for="password">Address</label>
+                        <input type="text" class="form-control" placeholder="Enter your address" autocomplete="off"
+                            name="address" [(ngModel)]="address">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Private Key</label>
+                        <input type="password" class="form-control" placeholder="Enter your private key"
+                            name="privateKey" [(ngModel)]="privateKey" (keyup)="keyUp($event)">
+                    </div>
+                </ng-template>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                    id="close">Close</button>
+                <button type="button" class="btn btn-outline-primary" (click)="login()">Access to my Wallet</button>
+            </div>
+        </div>
+    </div>
+</div>

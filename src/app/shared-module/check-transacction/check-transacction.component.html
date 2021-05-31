@@ -1,0 +1,93 @@
+<ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button"
+            role="tab" aria-controls="overview" aria-selected="true">
+            Overview
+        </button>
+    </li>
+    <li class="nav-item" role="presentation" *ngIf="block.transactions.length>0">
+        <button class="nav-link" id="transactions-tab" data-bs-toggle="tab" data-bs-target="#transactions" type="button"
+            role="tab" aria-controls="transactions" aria-selected="false">
+            Transactions
+            <ng-container *ngIf="transactions.length===block.transactions.length; else elseTemplate">
+                <span class="badge bg-primary">
+                    {{block.transactions.length}}
+                </span>
+            </ng-container>
+            <ng-template #elseTemplate>
+                <span class="badge bg-primary">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    {{transactions.length +" of "+block.transactions.length}}
+                </span>
+            </ng-template>
+        </button>
+    </li>
+    <li class="nav-item" role="presentation" *ngIf="block.uncles.length>0">
+        <button class="nav-link" id="uncles-tab" data-bs-toggle="tab" data-bs-target="#uncles" type="button" role="tab"
+            aria-controls="uncles" aria-selected="false">
+            Uncles <span class="badge bg-primary">{{block.uncles.length}}</span>
+        </button>
+    </li>
+
+
+</ul>
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+        <div class="row text-break">
+            <div class="col-4">
+                <strong>Hash:</strong>
+            </div>
+            <div class="col-8">
+                {{block.hash}}
+            </div>
+            <div class="col-4">
+                <strong>Miner:</strong>
+            </div>
+            <div class="col-8">
+                {{block.miner}}
+            </div>
+            <div class="col-4">
+                <strong>Gas Usage:</strong>
+            </div>
+            <div class="col-8">
+                {{block.gasUsed}} of {{block.gasLimit}} gas used
+                <div class="progress">
+                    <div class="progress-bar bg-info" role="progressbar" [style]="getPercent()" aria-valuemin="0"
+                        aria-valuemax="100">
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <strong>Time:</strong>
+            </div>
+            <div class="col-8">
+                {{serv_web3.getDate(block.timestamp)}}
+            </div>
+            <div class="col-4">
+                <strong>Size:</strong>
+            </div>
+            <div class="col-8">
+                {{(block.size/1024).toFixed(1)}} KB
+            </div>
+            <div class="col-4">
+                <strong>Difficulty:</strong>
+            </div>
+            <div class="col-8">
+                {{serv_web3.getDifficulty(block.difficulty)}} T
+            </div>
+
+            <div class="col-4">
+                <strong>Extra:</strong>
+            </div>
+            <div class="col-8">
+                {{block.extraData}}
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="transactions" role="tabpanel" aria-labelledby="transactions-tab">
+        <app-transacction [transactions]="transactions"></app-transacction>
+    </div>
+    <div class="tab-pane fade" id="uncles" role="tabpanel" aria-labelledby="uncles-tab">
+
+    </div>
+</div>

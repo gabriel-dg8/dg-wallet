@@ -1,0 +1,7 @@
+<div class="col-12">
+    <h1 class="h3">My transacctions</h1>
+</div>
+<app-transacction [transactions]="transactions"></app-transacction>
+<p class="tex-center">
+    <a class="link" (click)="getMyTransactions()" *ngIf="fromBlock>0">Review transactions in more blocks</a>
+</p>

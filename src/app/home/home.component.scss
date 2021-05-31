@@ -1,0 +1,30 @@
+.button-container {
+    margin-top: 2em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    background-color: #f76e38;
+    padding: 2em;
+    cursor: pointer;
+    color: white;
+    -webkit-transition: margin 0.5s ease-out;
+    -moz-transition: margin 0.5s ease-out;
+    -o-transition: margin 0.5s ease-out;
+    transition: margin 0.5s ease-out;
+}
+.button-container:hover {
+    margin-top: 0.5em;
+}
+.img-card {
+    height: 1em;
+}
+.arrow {
+    height: 1.5em;
+    filter: invert(243) sepia(81) saturate(17) hue-rotate(175deg);
+}
+
+.text-justify {
+    text-align: justify;
+}
+.eth-wallet {
+    height: 13em;
+}

@@ -1,0 +1,16 @@
+footer {
+    height: 3em;
+    width: 100%;
+    background-color: white;
+    box-shadow: 1px -4px 5px -6px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 1px -4px 5px -6px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 1px -4px 5px -6px rgba(0, 0, 0, 0.75);
+    padding: 1em;
+    position: fixed;
+    bottom: 0px;
+}
+
+.dg {
+    height: 1em;
+    width: auto;
+}

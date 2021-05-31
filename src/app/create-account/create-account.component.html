@@ -1,0 +1,25 @@
+<div class="modal fade" id="NewAccountModal" tabindex="-1" aria-labelledby="NewAccountModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="NewAccountModalLabel">Create a new wallet</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="">Password</label>
+                    <input type="password" placeholder="Enter your password" class="form-control" name="password"
+                        [(ngModel)]="password" (change)="create()" [disabled]="banCreated">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                    id="close">Close</button>
+                <button type="button" class="btn btn-outline-primary" (click)="create()" *ngIf="!banCreated">Create
+                    Account</button>
+                <button type="button" class="btn btn-outline-primary" (click)="download()" *ngIf="banCreated">Download
+                    Private key</button>
+            </div>
+        </div>
+    </div>
+</div>
