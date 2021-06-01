@@ -11,6 +11,9 @@ import { Web3Service } from 'src/app/services/web3.service';
   templateUrl: './check-transacction.component.html',
   styleUrls: ['./check-transacction.component.scss']
 })
+/**
+ * Muestra datos de un bloque y sus respectivas transacciones
+ */
 export class CheckTransacctionComponent implements OnInit {
 
   transacction: string = "";

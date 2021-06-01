@@ -1,3 +1,6 @@
+/**
+ * Datos de un bloque del blockchain
+ */
 export interface Block {
     difficulty: string;
     extraData: string;

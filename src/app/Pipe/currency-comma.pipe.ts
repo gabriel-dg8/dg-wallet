@@ -3,6 +3,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
   name: 'currencyComma'
 })
+/**
+ * Dar formato a un número 1,000.00
+ */
 export class CurrencyCommaPipe implements PipeTransform {
 
   transform(value: unknown, ...args: unknown[]): unknown {

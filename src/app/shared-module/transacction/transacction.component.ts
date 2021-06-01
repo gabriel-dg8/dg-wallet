@@ -8,6 +8,9 @@ import { Web3Service } from 'src/app/services/web3.service';
   templateUrl: './transacction.component.html',
   styleUrls: ['./transacction.component.scss']
 })
+/**
+ * Componente de las transacciones
+ */
 export class TransacctionComponent implements OnInit {
 
   @Input('transactions') transactions: Transacction[] = [];

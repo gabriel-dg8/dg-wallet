@@ -7,16 +7,33 @@ import { Web3Service } from '../services/web3.service';
   templateUrl: './create-account.component.html',
   styleUrls: ['./create-account.component.scss']
 })
+
+/**
+ * Componente para la creación de una cuenta
+ */
 export class CreateAccountComponent implements OnInit {
 
+  /**
+   * Contraseña para cifrar la llave privada
+   */
   password: string = "";
+  /**
+   * ¿Fue creada la cuenta?
+   */
   banCreated: boolean = false;
+  /**
+   * Account
+   */
   privateKey: any;
   constructor(private serv_web3: Web3Service) { }
 
   ngOnInit(): void {
   }
 
+  /**
+   * Validación y creación de una cuenta
+   * @returns any
+   */
   create() {
     if (this.password.length < 5) {
       Toast.error("Your password requires a minimum length of 5 characters");
@@ -27,6 +44,9 @@ export class CreateAccountComponent implements OnInit {
     this.banCreated = true;
   }
 
+  /**
+   * Descarga en .txt el la llave privada
+   */
   download() {
     this.serv_web3.downloadFile(JSON.stringify(this.privateKey), this.privateKey.address);
     document.getElementById('close').click();

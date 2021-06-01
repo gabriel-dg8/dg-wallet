@@ -11,6 +11,9 @@ declare const bootstrap;
   templateUrl: './info-account.component.html',
   styleUrls: ['./info-account.component.scss']
 })
+/**
+ * Información sobre la cuenta
+ */
 export class InfoAccountComponent implements OnInit, OnDestroy {
 
   address: string = "";

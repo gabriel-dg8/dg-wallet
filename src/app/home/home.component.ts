@@ -6,7 +6,11 @@ import { Router } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+/**
+ * Componente principal
+ */
 export class HomeComponent implements OnInit {
+
 
   constructor(private router: Router) { }
 

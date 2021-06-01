@@ -7,6 +7,9 @@ import { menuSign } from 'src/app/vars/menu';
   templateUrl: './dash-board.component.html',
   styleUrls: ['./dash-board.component.scss']
 })
+/**
+ * Componente del dashboard
+ */
 export class DashBoardComponent implements OnInit {
 
   constructor(private serv_menu: MenuService) {

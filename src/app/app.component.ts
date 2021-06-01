@@ -17,9 +17,15 @@ export class AppComponent implements OnInit {
     serv_shared.setRegistered(true);
   }
   ngOnInit(): void {
+    /**
+     * Visualizar login
+     */
     this.serv_shared.setLogin.subscribe(IsActive => {
       this.IsLogin = IsActive;
     });
+    /**
+     * Visualizar registro
+     */
     this.serv_shared.setRegister.subscribe(IsRegister => {
       this.IsRegister = IsRegister;
     })

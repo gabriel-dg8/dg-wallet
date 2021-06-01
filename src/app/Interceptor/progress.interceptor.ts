@@ -10,6 +10,9 @@ import { finalize } from 'rxjs/operators';
 import { ProgressService } from '../services/progress.service';
 
 @Injectable()
+/**
+ * Intercepta las peticiones para mostrar un progresbar cuando se esta realizando la petición
+ */
 export class ProgressInterceptor implements HttpInterceptor {
 
   activeRequest = 0;

@@ -9,6 +9,9 @@ declare const bootstrap;
   templateUrl: './tokens.component.html',
   styleUrls: ['./tokens.component.scss']
 })
+/**
+ * Componente para mostrar los tokens
+ */
 export class TokensComponent implements OnInit {
 
   search_token: string = "";

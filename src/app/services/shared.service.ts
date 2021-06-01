@@ -4,6 +4,9 @@ import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+/**
+ * Servicio para ocultar y/o mostrar el login y el registro
+ */
 export class SharedService {
 
 

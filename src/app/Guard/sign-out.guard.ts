@@ -6,12 +6,21 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
+/**
+ * Valida si un usuario no ha iniciado sesión
+ */
 export class SignOutGuard implements CanActivate {
 
   constructor(private router: Router) {
 
   }
 
+  /**
+     * Si es verdadero procederá con la ruta de lo contrario lo redirige a la ruta dg/dashboard
+     * @param route
+     * @param state
+     * @returns
+     */
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {

@@ -9,6 +9,7 @@ import { Chart } from 'src/app/models/Chart';
   templateUrl: './chart-transacctions.component.html',
   styleUrls: ['./chart-transacctions.component.scss']
 })
+/**Mostrar grafico  */
 export class ChartTransacctionsComponent implements OnInit, AfterViewInit {
 
   constructor(private api: ApiEthvmService, private serv_web3: Web3Service) { }

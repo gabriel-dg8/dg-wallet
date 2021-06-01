@@ -1,3 +1,6 @@
+/**
+ * Datos correspondientes a una transacción
+ */
 export interface Transacction {
     blockHash: string;
     blockNumber: number;

@@ -5,11 +5,19 @@ import { Token } from '../models/Token';
 @Injectable({
   providedIn: 'root'
 })
+/**
+ * Peticiones al API
+ * https://api.ethvm.com/
+ */
 export class ApiEthvmService {
 
   api: string = "https://api.ethvm.com/";
   constructor(private http: HttpClient) { }
 
+  /**
+   * Tokens dependientes del blockchain de ETH
+   * @returns 
+   */
   async getTokens(): Promise<Token[]> {
     let data = await this.http.post(this.api, {
       "operationName": "getLatestPrices",
@@ -21,6 +29,10 @@ export class ApiEthvmService {
     return tokens;
   }
 
+  /**
+   * Cantidad de transacciones durante el ultimo año
+   * @returns 
+   */
   async getAverage() {
     let year = new Date()
     let t = new Date((year.getFullYear() - 1) + "-" + year.getMonth() + "-" + year.getDate());

@@ -1,3 +1,6 @@
+/**
+ * Costo para realizar una transacción y su descripción
+ */
 export class GasPrice {
     safeLow: number = 0;
     get safeLowDesc(): string {

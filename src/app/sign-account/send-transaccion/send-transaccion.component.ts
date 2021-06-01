@@ -11,6 +11,9 @@ import { menuSign } from 'src/app/vars/menu';
   templateUrl: './send-transaccion.component.html',
   styleUrls: ['./send-transaccion.component.scss']
 })
+/**
+ * Componenete para enviar una transacción
+ */
 export class SendTransaccionComponent implements OnInit {
   sendEth = 0;
   type: string = "ETH";

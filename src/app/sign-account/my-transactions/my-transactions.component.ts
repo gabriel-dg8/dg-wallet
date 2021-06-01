@@ -7,6 +7,9 @@ import { Web3Service } from 'src/app/services/web3.service';
   templateUrl: './my-transactions.component.html',
   styleUrls: ['./my-transactions.component.scss']
 })
+/**
+ * Visualizar las transacciones realizadas por la cuenta actual
+ */
 export class MyTransactionsComponent implements OnInit {
 
   transactions: Transacction[] = [];

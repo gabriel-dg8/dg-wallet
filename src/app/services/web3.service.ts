@@ -16,13 +16,27 @@ import { Toast } from '../functions/Toast';
 @Injectable({
   providedIn: 'root'
 })
+/**
+ * Procesos con la librería web3
+ */
 export class Web3Service {
 
+  /**
+   * Referencia publica a la bliblioteca web3
+   */
   public web3: Web3;
   constructor(private http: HttpClient) {
+    /**
+     * Asignación del proveedor
+     */
     this.web3 = new Web3(Web3.givenProvider || environment.UrlNodo);
   }
 
+  /**
+   * crea una cuenta con una contraseña en especifica
+   * @param password 
+   * @returns 
+   */
   public createAccount(password: string) {
     const entropy = this.web3.utils.sha3(Math.random().toString(16) + this.web3.utils.randomHex(32));
     const wallet = this.web3.eth.accounts.privateKeyToAccount(entropy);
@@ -30,6 +44,11 @@ export class Web3Service {
     return encrypted;
   }
 
+  /**
+   * Conversión a ETH
+   * @param data 
+   * @returns 
+   */
   public toEther(data: string) {
     return this.web3.utils.fromWei(data, 'ether');
   }
@@ -39,11 +58,20 @@ export class Web3Service {
   private emitBalance = new Subject<any>();
   setBalance = this.emitBalance.asObservable();
 
+  /**
+   * Obtener la cantidad de ETH que cuenta una dirección y notificar el evento
+   * @param address 
+   */
   public async getBalance(address: string) {
     let balance = await this.web3.eth.getBalance(address);
     this.emitBalance.next(this.toEther(balance));
   }
 
+  /**
+   * Obtiene los últimos {top} de la cadena
+   * @param top 
+   * @returns 
+   */
   public async getBlocks(top: number = 10): Promise<Block[]> {
     let blocks: Block[] = [];
     let block = this.toBlock(await this.web3.eth.getBlock('latest'));
@@ -58,28 +86,41 @@ export class Web3Service {
     return blocks;
   }
 
+  /**
+   * Obtiene un bloque en especifico
+   * @param Hash puede ser el hash o blocknumber
+   * @returns 
+   */
   public async getBlock(Hash): Promise<Block> {
     let block = this.toBlock(await this.web3.eth.getBlock(Hash));
     return block;
   }
 
+  /**
+   * Conversión del bloque
+   * @param block 
+   * @returns 
+   */
   private toBlock(block): Block {
     return JSON.parse(JSON.stringify(block)) as Block
   }
 
-
-
-
   private emitTransacction = new Subject<Transacction>();
   setTransacction = this.emitTransacction.asObservable();
 
-  public async getTransaction(block: Block, addres: string = ""): Promise<Transacction[]> {
+  /**
+   * Obtener las transacción 
+   * @param block 
+   * @param address en caso de asignar un valor solo regresará las transacciones generadas o recibidas dado el valor
+   * @returns 
+   */
+  public async getTransaction(block: Block, address: string = ""): Promise<Transacction[]> {
     let transacctions: Transacction[] = [];
     if (block != null && block.transactions != null) {
       for (let txHash of block.transactions) {
         let tx: Transacction = (await this.web3.eth.getTransaction(txHash)) as Transacction;
-        if (addres.length > 2) {
-          if (tx.from === addres || tx.to === addres) {
+        if (address.length > 2) {
+          if (tx.from === address || tx.to === address) {
             transacctions.push(tx);
             this.emitTransacction.next(tx);
           }
@@ -95,6 +136,11 @@ export class Web3Service {
     return transacctions;
   }
 
+  /**
+   * Convierte un hex a utf8
+   * @param hex 
+   * @returns 
+   */
   public getUtf8(hex) {
     try {
       return this.web3.utils.hexToUtf8(hex);
@@ -103,6 +149,11 @@ export class Web3Service {
     }
   }
 
+  /**
+   * Convertir a fecha con un formato
+   * @param timestamp 
+   * @returns 
+   */
   getDate(timestamp) {
     let longitud = timestamp + "".length;
     let newTimes = 1;
@@ -113,6 +164,11 @@ export class Web3Service {
     return moment(timestamp).format("MMMM Do YYYY, h:mm:ss a") + " (" + moment(timestamp).fromNow() + ")";
   }
 
+  /**
+   * Convertir a Date sin formato
+   * @param time 
+   * @returns Date
+   */
   timestamp(time) {
     let longitud = time + "".length;
     let newTimes = 1;
@@ -123,17 +179,32 @@ export class Web3Service {
     return new Date(time);;
   }
 
+  /**
+   * Obtener la dificultad del proceso
+   * @param difficulty 
+   * @returns 
+   */
   getDifficulty(difficulty) {
     return Number.parseFloat(this.web3.utils.fromWei(difficulty, 'micro')).toFixed(1);
   }
 
-
+  /**
+   * Descar un json
+   * @param json 
+   * @param address 
+   */
   downloadFile(json: string, address: string) {
     var blob = new Blob([json], { type: "text/plain;charset=utf-8" });
     let name = moment(new Date()).format('YYYY-MM-DD[T]hh:mm:ss[Z]') + address;
     FileServer.saveAs(blob, name);
   }
 
+  /**
+   * Realizar el envio de un monto en ETH
+   * @param ammount en ETH
+   * @param to_address para una dirección
+   * @param gasselect precio seleccionado
+   */
   async send_transacction(ammount, to_address, gasselect) {
     try {
       ammount *= 1000000000000000000;
@@ -147,7 +218,7 @@ export class Web3Service {
         gasLimit: this.web3.utils.toHex(22000),
         to: to_address,
         value: this.web3.utils.toHex(ammount)
-        //data: '0x7f7465737432000000000000000000000000000000000000000000000000000000600057'
+        //data: '0x7f7465737432000000000000000000000000000000000000000000000000000000600057' habilitar para tokens
       }
       const common = new Common({ chain: environment.chain })
       const tx = Transaction.fromTxData(rawTr, { common })
@@ -166,6 +237,11 @@ export class Web3Service {
 
   }
 
+  /**
+   * Obtiene las transacciónes entre un bloque y otro que le pertenecen a la cuenta actual
+   * @param fromBlock 
+   * @param toBlock 
+   */
   async getTransacctionsFromMyAddress(fromBlock: number, toBlock: number) {
     let numberBlock = fromBlock;
     if (toBlock < 1) {
@@ -182,7 +258,10 @@ export class Web3Service {
   }
 
 
-
+  /**
+   * Obtener el costo del gas 
+   * @returns 
+   */
   async getGasPrice(): Promise<GasPrice> {
     let gas = (await this.http.get("https://www.etherchain.org/api/gasPriceOracle").toPromise()) as GasPrice;
     let gasPrice = new GasPrice();

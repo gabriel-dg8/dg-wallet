@@ -1,6 +1,8 @@
 import { environment } from "src/environments/environment";
 declare const bootstrap;
-
+/**
+ * Menu logout
+ */
 export const menu = {
     brand: {
         title: "Wallet DG",
@@ -44,7 +46,9 @@ export const menu = {
         }
     ]
 }
-
+/**
+ * Menu logeado
+ */
 export const menuSign = {
     brand: {
         title: "Wallet DG",

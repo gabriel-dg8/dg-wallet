@@ -9,6 +9,9 @@ import { Web3Service } from '../../services/web3.service';
   templateUrl: './check-blocks.component.html',
   styleUrls: ['./check-blocks.component.scss']
 })
+/**
+ * Bloques
+ */
 export class CheckBlocksComponent implements OnInit, OnDestroy {
 
   blocks: Block[] = [];
@@ -19,11 +22,14 @@ export class CheckBlocksComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    this.getTransacctions();
+    this.getBlocks();
+    /**
+     * Recargar los bloques cada 16s
+     */
     this.interval = setInterval(() => {
       if (this.secunds == 0) {
         this.secunds = 16;
-        this.getTransacctions();
+        this.getBlocks();
       }
       this.secunds--;
     }, 1000);
@@ -41,7 +47,7 @@ export class CheckBlocksComponent implements OnInit, OnDestroy {
     }
   }
 
-  async getTransacctions() {
+  async getBlocks() {
     this.blocks = await this.serv_web3.getBlocks();
   }
 
@@ -62,6 +68,9 @@ export class CheckBlocksComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Busca un bloque en especifico
+   */
   Buscar() {
     this.router.navigate([this.getUrl(this.search_block)]);
   }

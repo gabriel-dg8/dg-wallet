@@ -1,3 +1,6 @@
+/**
+ * Datos que corresponde a un token
+ */
 export interface Token {
     contract: string;
     current_price: number;

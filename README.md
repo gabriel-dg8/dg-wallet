@@ -22,8 +22,7 @@ url del dominio que se esta utilizando
 
 
 En la ruta `dg-wallet/src/app/services/currency.service.ts` modificar la linea 16 con la ruta del archivo PHP
-<!--Faltó por cargar-->
-`http://localhost/monedas/` a la nueva ruta para la conversión de monedas.
+`http://localhost/monedas/` a la nueva ruta para la conversión de monedas. El archivo `index.php` en la raiz del proyecto debe ser cargado a un servidor apache
 
 ## API utilizadas
 `https://api.ethvm.com/` para obtener los tokens <br>
